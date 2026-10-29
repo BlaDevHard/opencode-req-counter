@@ -1,0 +1,32 @@
+{
+  "name": "opencode-req-counter",
+  "version": "0.1.0",
+  "description": "Request counter in the OpenCode TUI footer, beside the native token monitor",
+  "type": "module",
+  "license": "MIT",
+  "author": "Ramiro Fabiano",
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "tui",
+    "footer",
+    "requests",
+    "counter"
+  ],
+  "exports": {
+    "./tui": "./src/tui.tsx"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@opencode/plugin": "latest"
+  },
+  "peerDependencies": {
+    "@opentui/core": ">=0.6.6",
+    "@opentui/solid": ">=0.6.6",
+    "solid-js": ">=1.9.0"
+  }
+}
