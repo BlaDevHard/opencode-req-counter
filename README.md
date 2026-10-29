@@ -16,7 +16,7 @@ Clone into OpenCode's global plugin directory (auto-discovered — no config cha
 needed):
 
 ```sh
-git clone https://github.com/BladevHard/opencode-req-counter.git \
+git clone https://github.com/BlaDevHard/opencode-req-counter.git \
   ~/.config/opencode/plugins/req-counter
 ```
 
