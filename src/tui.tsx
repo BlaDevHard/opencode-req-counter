@@ -16,11 +16,11 @@
 //      proxy local (ex.: free-router), para quem quer medir o que
 //      realmente saiu na rede.
 //
-// Exemplo no cli.json:
+// Exemplo no cli.json (após clonar o repo em algum lugar):
 //
-//   { "plugins": [ "opencode-req-counter" ] }
+//   { "plugins": [ "file:///caminho/para/opencode-req-counter" ] }
 //
-//   { "plugins": [ { "package": "opencode-req-counter",
+//   { "plugins": [ { "package": "file:///caminho/para/opencode-req-counter",
 //                    "options": { "log": { "path": "~/.local/state/free-router.log",
 //                                          "pattern": "^\\[([0-9-]{10})\\] usando " } } } ] }
 import { Plugin } from "@opencode/plugin/tui"

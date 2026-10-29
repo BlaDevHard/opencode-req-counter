@@ -12,16 +12,25 @@ request, and they add up fast.
 
 ## Install
 
-Add the plugin to your `cli.json` (`~/.config/opencode/cli.json`):
+Clone into OpenCode's global plugin directory (auto-discovered — no config changes
+needed):
+
+```sh
+git clone https://github.com/BladevHard/opencode-req-counter.git \
+  ~/.config/opencode/plugins/req-counter
+```
+
+Start `opencode` and the counter appears in the footer. To remove, delete the
+directory.
+
+Prefer an explicit reference instead? Clone anywhere and point `cli.json`
+(`~/.config/opencode/cli.json`) at it:
 
 ```json
 {
-  "plugins": ["opencode-req-counter"]
+  "plugins": ["file:///home/you/tools/opencode-req-counter"]
 }
 ```
-
-The TUI picks it up immediately (no restart needed if the file is already open — or
-just start `opencode` again).
 
 ## Modes
 
@@ -32,7 +41,9 @@ Counts every LLM API call through the OpenCode server by listening to the
 
 - is **daily** — resets automatically at midnight (local time);
 - **persists** across TUI restarts and **syncs** across multiple TUI instances;
-- counts **all sessions** on the server, including subagents.
+- counts **all sessions** on the server, including subagents;
+- shows in **both footers**: the home screen and, next to the token monitor, inside
+  a session.
 
 ### 2. Local proxy log (optional)
 
@@ -43,7 +54,7 @@ count what actually hits the network, point the plugin at your log file:
 {
   "plugins": [
     {
-      "package": "opencode-req-counter",
+      "package": "file:///home/you/tools/opencode-req-counter",
       "options": {
         "log": {
           "path": "~/.local/state/free-router.log",
@@ -64,10 +75,6 @@ count what actually hits the network, point the plugin at your log file:
 Log mode re-reads the file every 15 seconds. A missing file shows `0` instead of
 crashing.
 
-## Uninstall
-
-Remove the entry from `cli.json` (or delete the package with your package manager).
-
 ## How the native counter was validated
 
 One forced turn (one tool call + final answer) produced **3 LLM API requests** in the
@@ -75,10 +82,16 @@ proxy log and exactly **3** `session.usage.updated` events — while
 `session.step.started` fired 2 times and `session.execution.started` once. Hence
 `session.usage.updated` is the event that maps 1:1 to a request.
 
+## Requirements
+
+[OpenCode](https://opencode.ai) v2 (tested on 2.2.x). No dependencies to install —
+OpenCode resolves the plugin SDK at runtime.
+
 ## License
 
 [MIT](./LICENSE) — same as OpenCode itself.
 
 ## Author
 
-Ramiro Fabiano — issues and PRs welcome.
+[BlaDevHard](https://github.com/BlaDevHard) (Ramiro Fabiano) — issues and PRs
+welcome.
